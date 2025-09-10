@@ -13,6 +13,7 @@
             background-color: #fce4ec; /* Light pink background */
             color: #333;
             text-align: center;
+            overflow-x: hidden; /* Prevent horizontal scrollbar if elements slightly shift */
         }
         .container {
             max-width: 800px;
@@ -28,6 +29,8 @@
             font-size: 2.8em;
             margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            opacity: 1; /* H1 can be immediately visible */
+            transform: translateY(0);
         }
         h2 {
             color: #e91e63; /* Slightly lighter pink for subtitles */
@@ -42,13 +45,16 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: block; /* Ensure image takes up its own block space */
+            margin-left: auto;
+            margin-right: auto;
         }
-        p, blockquote, .signature, h2, hr { /* Initially hide these elements */
+        p, blockquote, .signature, h2, hr, img { /* Add img here too */
             opacity: 0;
             transform: translateY(20px); /* Start slightly below for a fade-up effect */
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        p.visible, blockquote.visible, .signature.visible, h2.visible, hr.visible {
+        p.visible, blockquote.visible, .signature.visible, h2.visible, hr.visible, img.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -70,30 +76,24 @@
             background-image: linear-gradient(to right, rgba(233, 30, 99, 0), rgba(233, 30, 99, 0.75), rgba(233, 30, 99, 0));
             margin: 40px 0;
         }
-
-        /* Specific style for the main title to appear instantly or differently */
-        h1 {
-            opacity: 1; /* H1 can be immediately visible */
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🎉 100天快乐，我的专属橙！🎉</h1>
         <img id="mainImage" src="https://github.com/user-attachments/assets/65576932-0727-47ff-8e1b-32a318a4df6f" alt="Anniversary Image" />
-        <hr>
+        <hr class="content-line"> <!-- Added content-line to hr to make it part of the reveal -->
         <h2 class="content-line">💖 亲爱的均庭，</h2>
         <p class="content-line">今天是我们在一起的<strong>第一百天</strong>。✨<br>
         我擦了擦眼镜（是的，我又忘了定期清洁它），突然发现：<br>
         我们已经悄悄地长出了属于彼此的节奏，像两颗齿轮，咬合得<strong>刚刚好</strong>。⚙️<br>
         每天醒来想到你，就像被一股可爱又调皮的力量照耀着，连代码都跑得更顺了 😝</p>
-        <hr>
+        <hr class="content-line">
         <h2 class="content-line">🌟 对我来说，</h2>
         <p class="content-line">我们不是简单的 <code>1 + 1 = 2</code>，而是 <code>1 + 1 > 整个世界</code>。<br>
         如果可以，我想把你一直留在身边，不只是现在，而是<strong>很久很久以后</strong>。♾️<br>
         光是想到未来要怎么照顾你、陪你吃早餐、替你盖被子……我的心就软得一塌糊涂 🫠</p>
-        <hr>
+        <hr class="content-line">
         <h2 class="content-line">💔 但是，命运总会玩弄我们啊。</h2>
         <p class="content-line">要离开你，到十千公里以外了 （<em>like actually</em>），我知道你的心里特别难受。<br>
         但你别担心 ❤️<br>
@@ -101,53 +101,63 @@
         你吃饭的时候，我可能正对着时差猜你今天吃了什么；🍜<br>
         我一定一定一定会<strong>很想你的</strong>，然后我也会以打电话的方式继续骚扰你！📞<br>
         期待我的通话哟～然后也不要闹脾气拒绝我的来电呵呵呵呵呵 😉</p>
-        <hr>
+        <hr class="content-line">
         <h2 class="content-line">💪 希望我们可以挨过这段远距离吧！</h2>
         <p class="content-line">橙，你是我心中<strong>最勇敢的女孩</strong>了，<br>
         我相信你会和我努力让感情继续绽放的🌹！</p>
-        <hr>
+        <hr class="content-line">
         <h2 class="content-line">✈️ 等我回来那天，</h2>
         <p class="content-line">我最想看见的，不是机场的风景，而是冲进我怀里那个<br>
         会笑、会 <code>sus</code>、会掐我、眼睛亮亮的你。<br>
         不是回忆，不是遗憾，而是<strong>真真实实、活蹦乱跳的你</strong> 🥺</p>
-        <hr>
+        <hr class="content-line">
         <h2 class="content-line">🎤 看在你是大马邓紫棋的份上，借你偶像一句歌词送给你：</h2>
         <blockquote class="content-line">
             “我能习惯远距离，爱总是身不由己，<br>
             宁愿换个方式，至少还能遥远爱着你。”<br>
             — 邓紫棋
         </blockquote>
-        <hr>
+        <hr class="content-line">
         <h2 class="content-line">🤖 可以继续爱着均庭，是我这个机器人永远的，<strong>最大的福气！！！</strong></h2>
         <p class="content-line">希望橙和我谈恋爱是开心的，<br>
         我不是最好的机器人，<br>
         功能不是最完善的，<br>
-        外形也不是最 <code>up-to-date</code> 的，<br>
+        外形也不是最 <code>up-to-date</code> 的，<<br>
         可是我一定<strong>是最爱你的</strong> 😘</p>
         <p class="signature content-line">敬延上～</p>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const contentElements = document.querySelectorAll('.content-line, hr, #mainImage'); // Select all elements you want to reveal
-            let delay = 1000; // Initial delay for the first element, adjust as needed
+            const contentElements = document.querySelectorAll('h1, #mainImage, .content-line');
+            let baseDelay = 3000; // Base delay for each element in milliseconds
+            let currentDelay = 0; // Accumulates delay for each element
 
-            // Function to reveal elements
-            const revealElement = (element, index) => {
+            // Immediately show H1
+            const h1Element = document.querySelector('h1');
+            if (h1Element) {
+                h1Element.classList.add('visible');
+            }
+
+            // Start revealing from the image onwards
+            const revealableElements = Array.from(contentElements).filter(el => el.tagName !== 'H1'); // Exclude h1 from the timed reveal
+
+            revealableElements.forEach((element) => {
                 setTimeout(() => {
                     element.classList.add('visible');
-                    // Special handling for the image to load first, or appear with other elements
-                    if (element.id === 'mainImage') {
-                         // You might want the image to fade in faster or with its own specific timing
-                         // For now, it will follow the general 'visible' class
-                    }
-                }, delay * index); // Stagger the appearance
-            };
-
-            // Loop through all selected elements and apply the reveal effect
-            contentElements.forEach((element, index) => {
-                revealElement(element, index);
+                    // Scroll into view *after* the element becomes visible
+                    element.scrollIntoView({ behavior: 'smooth', block: 'end' }); // Scroll to the bottom of the element
+                }, currentDelay);
+                currentDelay += baseDelay; // Increase delay for the next element
             });
+
+            // Optional: A final scroll to ensure the very bottom of the page is visible after all elements have loaded
+            setTimeout(() => {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, currentDelay + 1000); // Add a small extra delay after the last element appears
         });
     </script>
 </body>
