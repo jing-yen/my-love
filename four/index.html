@@ -130,49 +130,51 @@
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen">
-        <img id="loading-img" class="visible" src="https://img.52desk.com/tp/234704UKsDy.jpg" alt="Loading..." />
+        <img id="loading-img" class="visible" src="https://github.com/user-attachments/assets/c98b0672-8316-4f4f-80c0-8f3c09853a49" alt="Loading..." />
     </div>
     <audio id="myAudio" src="https://github.com/jing-yen/my-love/raw/refs/heads/main/PILLOWTALK%20-%20ZAYN.mp3"></audio>
     <!-- Main Content -->
     <div id="main-content">
     <div class="container">
         <h1 class="content-line">四个月快乐🎉</h1>
-        <img id="mainImage" src="https://github.com/user-attachments/assets/c98b0672-8316-4f4f-80c0-8f3c09853a49" alt="Lovely Junting" />
+        <p class="content-line" style="opacity: 0; height: 0">～～～</p>
+        <img id="mainImage" src="https://github.com/user-attachments/assets/536047b5-ea8f-4bcb-be41-51a53dd5e2ed" alt="Lovely Junting" />
         <hr class="content-line">
 
+        <p class="content-line" style="opacity: 0; height: 0">～～～</p>
         <p class="content-line">致 可爱的均庭～</p>
 
         <p class="content-line">又过了一个月咯，我们已经在一起 123 天了咧！呵呵还记得，我们第101天被分隔两地了，当时的我们真的很依依不舍～ 橙还被🦟纠缠着 而我就这样走了。。 唉 我的无能为力成为了我的败笔！</p>
         <hr class="content-line">
 
-        <h2 class="content-line">如果可以的话，我想要现在抱着橙，哄你入睡。。</h2>
-        <p class="content-line">～抚摸你可爱的脸蛋～<br>
-        ～吹干你顺滑的头发～<br>
-        ～拥抱你温温的身体～<br>
-        ～亲着你倔强的嘴唇～</p>
+        <h2 class="content-line">如果可以的话，我想要现在抱着橙，哄你入睡🛌。。</h2>
+        <p class="content-line">～抚摸你可爱的脸蛋😻～<br>
+        ～吹干你顺滑的头发💆🏻‍♀️～<br>
+        ～拥抱你温温的身体🤗～<br>
+        ～亲着你倔强的嘴唇😚～</p>
         <p class="content-line">一遍一遍地告诉你，我爱你！！！</p>
         <hr class="content-line">
 
         <p class="content-line">想要让橙知道，我在10000公里外也一直在思念你，希望着你会过的开心，过得顺利</p>
         <hr class="content-line">
 
-        <h2 class="content-line">如果橙因为看不见我不开心：</h2>
+        <h2 class="content-line">如果橙因为看不见我不开心✈️：</h2>
         <p class="content-line">不怕不怕，我们每天都能视频通话！我很想看到你 cute cute 的脸蛋 听你述说你每一天的故事</p>
         <hr class="content-line">
 
-        <h2 class="content-line">如果橙担心我会喜欢其他人：</h2>
+        <h2 class="content-line">如果橙担心我会喜欢其他人💔：</h2>
         <p class="content-line">我是离不开你的！不要妄想你可以离开我了！哈哈哈哈哈哈 我爱你我爱你我爱你</p>
         <hr class="content-line">
 
-        <h2 class="content-line">如果橙对midterm感到焦虑：</h2>
+        <h2 class="content-line">如果橙对midterm感到焦虑📚：</h2>
         <p class="content-line">嗯嗯 2个midterm是一个沉重的压力。我知道你一定行，一定可以考到惊人的好成绩，努力就会有结果的呀呀呀</p>
         <hr class="content-line">
 
-        <h2 class="content-line">如果橙因为肚子饿了生气：</h2>
+        <h2 class="content-line">如果橙因为肚子饿了生气😡：</h2>
         <p class="content-line">跟我讲！随时跟我讲！我都买哈哈哈哈哈哈哈哈哈</p>
         <hr class="content-line">
 
-        <h2 class="content-line">如果橙需要了想要了：</h2>
+        <h2 class="content-line">如果橙需要了想要了🤰🏻：</h2>
         <p class="content-line">我们一起解决好不好 请你不要找别的帅哥好不好 🥺</p>
         <hr class="content-line">
 
@@ -185,9 +187,13 @@
         <p class="content-line">但我们不可以掉以轻心，古言诉称的故事会结束，所以我们要好好爱下去，写下属于我们自己的story～</p>
         <hr class="content-line">
 
-        <p class="content-line">好啦，我收笔啦～<br>
+        <p class="content-line">好啦，我收笔啦✍🏻～<br>
         你的敬延</p>
-        <p class="small-text content-line">（不哭不哭好不好~）</p>
+        <p class="signature content-line">2025 10.01</p>
+
+        <p class="content-line" style="opacity: 0; height: 0">～～～</p>
+        <img src="https://github.com/user-attachments/assets/37157bbe-77d5-41d4-a33a-63b0d79db615" alt="Cute Couple" class="content-line" />
+        <p class="small-text content-line">（不哭不哭好不好😭~）</p>
     </div>
     </div>
     <script>
@@ -224,7 +230,19 @@
             const revealableElements = Array.from(contentElements).filter(el => el);
             let idx = 0;
 
+            function splitGraphemes(text) {
+                if ('Segmenter' in Intl) {
+                    const segmenter = new Intl.Segmenter('zh', { granularity: 'grapheme' });
+                    return Array.from(segmenter.segment(text), segment => segment.segment);
+                } else {
+                    // Fallback: naive split, may break emojis on older browsers
+                    console.warn('Intl.Segmenter not supported, falling back to naive split.');
+                    return Array.from(text);
+                }
+            }
+
             function animateTextLine(element, text, cb) {
+                let graphemes = splitGraphemes(text);
                 let i = 0;
                 element.textContent = "";
                 let cursor = document.createElement('span');
@@ -233,26 +251,32 @@
                 element.appendChild(cursor);
 
                 function showNextChar() {
-                    if (i < text.length) {
-                        // <br> support
-                        if (text[i] === '<') {
-                            const brMatch = text.slice(i).match(/^<br\s*\/?>/);
+
+                    if (i < graphemes.length) {
+                        let g = graphemes[i];
+
+                        // Handle <br> tags in HTML
+                        if (g === "<") {
+                            // Look for <br>
+                            const rest = graphemes.slice(i).join('');
+                            const brMatch = rest.match(/^<br\s*\/?>/);
                             if (brMatch) {
                                 element.insertBefore(document.createElement('br'), cursor);
                                 i += brMatch[0].length;
-                                setTimeout(showNextChar, 30);
+                                setTimeout(showNextChar, 500);
                                 return;
                             }
                         }
-                        // Add next character
-                        let ch = text[i];
+
+                        // Insert grapheme (character or emoji)
                         let span = document.createElement('span');
-                        span.textContent = ch;
+                        span.textContent = g;
                         element.insertBefore(span, cursor);
                         i++;
                         let delay = 100;
-                        if (ch == '，' || ch == ' ') delay = 300;
-                        if (ch == '，' || ch == '。' || ch == '！' || ch=='～') delay = 800; // longer delay for punctuation
+                        if (g == '，' || g == ' ') delay = 300;
+                        if (g == '，' || g == '。' || g == '！' || g == '～') delay = 800; // longer delay for punctuation
+
                         setTimeout(showNextChar, delay);
                     } else {
                         element.removeChild(cursor);
