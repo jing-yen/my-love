@@ -105,11 +105,8 @@
             object-fit: contain; /* Always show the whole image, no cropping */
             display: block;
             margin: auto;
-            opacity: 1;
-            transition: opacity 3s linear;
-        }
-        #loading-img.active {
-            opacity: 1;
+            opacity: 0;
+            transition: opacity 3s ease-in;
         }
         #main-content {
             display: none;
@@ -208,20 +205,21 @@
             setTimeout(() => {
                 loadingImg.style.opacity = '1';
                 loadingScreen.classList.add('ready');
-            }, 50); // slight delay to trigger transition
-
-            // Enable tap/click to start
-            function startApp() {
+            }, 1000); // slight delay to trigger transition
+            
+            // Listen for tap/click (mobile and desktop)
+            loadingScreen.addEventListener('click', function startApp() {
                 loadingScreen.style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 // Play audio
                 const audio = document.getElementById('myAudio');
-                if (audio) audio.play();
-                animateContent();
-            }
-            // Listen for tap/click (mobile and desktop)
-            loadingScreen.addEventListener('click', startApp);
-            loadingScreen.addEventListener('touchstart', startApp);
+                // Try to play audio reliably
+                audio.play()
+                    .then(() => {
+                        // Audio started successfully
+                        animateContent();
+                    })
+            });
         });
 
         // TEXT ANIMATION LOGIC
