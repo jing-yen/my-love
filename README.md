@@ -1,6 +1,8 @@
 # 100天快乐 🎉
 
 <img width="1248" height="832" alt="image" src="https://github.com/user-attachments/assets/65576932-0727-47ff-8e1b-32a318a4df6f" />
+![1](https://github.com/user-attachments/assets/e1b5c028-64ab-4034-b358-e2a07f71c628)
+
 
 ## 亲爱的均庭，  
 今天是我们在一起的第一百天。  
