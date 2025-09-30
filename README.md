@@ -2,6 +2,8 @@
 
 <img width="1248" height="832" alt="image" src="https://github.com/user-attachments/assets/65576932-0727-47ff-8e1b-32a318a4df6f" />
 <img src="https://github.com/user-attachments/assets/536047b5-ea8f-4bcb-be41-51a53dd5e2ed" />
+<img width="1080" height="2400" alt="background" src="https://github.com/user-attachments/assets/c98b0672-8316-4f4f-80c0-8f3c09853a49" />
+
 
 ## 亲爱的均庭，  
 今天是我们在一起的第一百天。  
