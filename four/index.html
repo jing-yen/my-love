@@ -132,11 +132,12 @@
     <div id="loading-screen">
         <img id="loading-img" class="visible" src="https://img.52desk.com/tp/234704UKsDy.jpg" alt="Loading..." />
     </div>
+    <audio id="myAudio" src="https://github.com/jing-yen/my-love/raw/refs/heads/main/PILLOWTALK%20-%20ZAYN.mp3"></audio>
     <!-- Main Content -->
     <div id="main-content">
     <div class="container">
         <h1 class="content-line">四个月快乐🎉</h1>
-        <img id="mainImage" src="https://github.com/user-attachments/assets/536047b5-ea8f-4bcb-be41-51a53dd5e2ed" alt="Lovely Junting" />
+        <img id="mainImage" src="https://github.com/user-attachments/assets/c98b0672-8316-4f4f-80c0-8f3c09853a49" alt="Lovely Junting" />
         <hr class="content-line">
 
         <p class="content-line">致 可爱的均庭～</p>
@@ -149,7 +150,7 @@
         ～吹干你顺滑的头发～<br>
         ～拥抱你温温的身体～<br>
         ～亲着你倔强的嘴唇～</p>
-        <p class="content-line">一遍一遍地告诉你，我爱你！！！!</p>
+        <p class="content-line">一遍一遍地告诉你，我爱你！！！</p>
         <hr class="content-line">
 
         <p class="content-line">想要让橙知道，我在10000公里外也一直在思念你，希望着你会过的开心，过得顺利</p>
@@ -172,7 +173,7 @@
         <hr class="content-line">
 
         <h2 class="content-line">如果橙需要了想要了：</h2>
-        <p class="content-line">我们一起解决好不好 **请你不要找别的帅哥好不好** 🥺</p>
+        <p class="content-line">我们一起解决好不好 请你不要找别的帅哥好不好 🥺</p>
         <hr class="content-line">
 
         <p class="content-line">橙 你说你想来苏黎世跟我一起玩，我真的很感动，我真的很想跟你一起玩，还要玩你 🥹。。。好快，多几个月我们就要可以见面了了了了！！！</p>
@@ -192,11 +193,27 @@
     <script>
         // LOADING SCREEN LOGIC
         document.addEventListener('DOMContentLoaded', () => {
+            const loadingImg = document.getElementById('loading-img');
+            const loadingScreen = document.getElementById('loading-screen');
+            const tapText = document.getElementById('tap-text');
+            // Fade in loading image
             setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
+                loadingImg.style.opacity = '1';
+                loadingScreen.classList.add('ready');
+            }, 50); // slight delay to trigger transition
+
+            // Enable tap/click to start
+            function startApp() {
+                loadingScreen.style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
+                // Play audio
+                const audio = document.getElementById('myAudio');
+                if (audio) audio.play();
                 animateContent();
-            }, 5000);
+            }
+            // Listen for tap/click (mobile and desktop)
+            loadingScreen.addEventListener('click', startApp);
+            loadingScreen.addEventListener('touchstart', startApp);
         });
 
         // TEXT ANIMATION LOGIC
