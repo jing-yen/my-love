@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>给可爱的均庭</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #fce4ec; /* Light pink background */
+            background-color: #fce4ec;
             color: #333;
             text-align: center;
-            overflow-x: hidden; /* Prevent horizontal scrollbar if elements slightly shift */
+            overflow-x: hidden;
+            min-height: 100vh;
         }
         .container {
             max-width: 800px;
@@ -25,15 +29,15 @@
             position: relative;
         }
         h1 {
-            color: #d81b60; /* Deep pink for main title */
+            color: #d81b60;
             font-size: 2.8em;
             margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            opacity: 1; /* H1 can be immediately visible */
+            opacity: 1;
             transform: translateY(0);
         }
         h2 {
-            color: #e91e63; /* Slightly lighter pink for subtitles */
+            color: #e91e63;
             border-bottom: 2px solid #f8bbd0;
             padding-bottom: 10px;
             margin-top: 40px;
@@ -45,13 +49,13 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            display: block; /* Ensure image takes up its own block space */
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
-        p, blockquote, .signature, h2, hr, img { /* Add img here too */
+        p, blockquote, .signature, h2, hr, img {
             opacity: 0;
-            transform: translateY(20px); /* Start slightly below for a fade-up effect */
+            transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         p.visible, blockquote.visible, .signature.visible, h2.visible, hr.visible, img.visible {
@@ -59,10 +63,10 @@
             transform: translateY(0);
         }
         strong {
-            color: #c2185b; /* Stronger pink for bold text */
+            color: #c2185b;
         }
         em {
-            color: #6a1b9a; /* Purple for italics */
+            color: #6a1b9a;
         }
         .signature {
             margin-top: 50px;
@@ -81,15 +85,63 @@
             color: #888;
             margin-top: 20px;
         }
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #loading-img {
+            max-height: 100vh;
+            max-width: 100vw;
+            width: auto;
+            height: 100vh;
+            object-fit: contain; /* Always show the whole image, no cropping */
+            display: block;
+            margin: auto;
+            opacity: 1;
+            transition: opacity 3s linear;
+        }
+        #loading-img.active {
+            opacity: 1;
+        }
+        #main-content {
+            display: none;
+        }
+        /* For animated text cursor */
+        .animated-cursor {
+            display: inline-block;
+            width: 1ch;
+            background: none;
+            animation: blink 1s steps(1) infinite;
+        }
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img id="loading-img" class="visible" src="https://img.52desk.com/tp/234704UKsDy.jpg" alt="Loading..." />
+    </div>
+    <!-- Main Content -->
+    <div id="main-content">
     <div class="container">
-        <h1>哎哟哎哟 可爱的均庭呀</h1>
-        <img id="mainImage" src="https://github.com/user-attachments/assets/e1b5c028-64ab-4034-b358-e2a07f71c628" alt="Lovely Junting" />
+        <h1 class="content-line">四个月快乐🎉</h1>
+        <img id="mainImage" src="https://github.com/user-attachments/assets/536047b5-ea8f-4bcb-be41-51a53dd5e2ed" alt="Lovely Junting" />
         <hr class="content-line">
 
-        <p class="content-line">又过了一个月咯，我们已经在一起 <strong>123 天</strong>了咧！呵呵还记得，我们第101天被分隔两地了，当时的我们真的很依依不舍～ 橙还被🦟纠缠着 而我就这样走了 唉 我的无能为力成为了我的败笔！</p>
+        <p class="content-line">致 可爱的均庭～</p>
+
+        <p class="content-line">又过了一个月咯，我们已经在一起 123 天了咧！呵呵还记得，我们第101天被分隔两地了，当时的我们真的很依依不舍～ 橙还被🦟纠缠着 而我就这样走了。。 唉 我的无能为力成为了我的败笔！</p>
         <hr class="content-line">
 
         <h2 class="content-line">如果可以的话，我想要现在抱着橙，哄你入睡。。</h2>
@@ -97,7 +149,7 @@
         ～吹干你顺滑的头发～<br>
         ～拥抱你温温的身体～<br>
         ～亲着你倔强的嘴唇～</p>
-        <p class="content-line">一遍一遍地告诉你，**我爱你！！！！**</p>
+        <p class="content-line">一遍一遍地告诉你，我爱你！！！!</p>
         <hr class="content-line">
 
         <p class="content-line">想要让橙知道，我在10000公里外也一直在思念你，希望着你会过的开心，过得顺利</p>
@@ -108,7 +160,7 @@
         <hr class="content-line">
 
         <h2 class="content-line">如果橙担心我会喜欢其他人：</h2>
-        <p class="content-line">我是离不开你的！不要妄想你可以离开我了！哈哈哈哈哈哈 **我爱你我爱你我爱你**</p>
+        <p class="content-line">我是离不开你的！不要妄想你可以离开我了！哈哈哈哈哈哈 我爱你我爱你我爱你</p>
         <hr class="content-line">
 
         <h2 class="content-line">如果橙对midterm感到焦虑：</h2>
@@ -123,7 +175,7 @@
         <p class="content-line">我们一起解决好不好 **请你不要找别的帅哥好不好** 🥺</p>
         <hr class="content-line">
 
-        <p class="content-line">橙 你说你想来苏黎世跟我一起玩，我真的很感动，我真的很想跟你一起玩，还要玩你 🥹。。。**好快，多几个月我们就要可以见面了了了了！！！**</p>
+        <p class="content-line">橙 你说你想来苏黎世跟我一起玩，我真的很感动，我真的很想跟你一起玩，还要玩你 🥹。。。好快，多几个月我们就要可以见面了了了了！！！</p>
         <hr class="content-line">
 
         <p class="content-line">谢谢橙陪了我六个月，真好笑，我们的故事是从另一个故事开始的。在telegram里，你现在还是我的 “苏橙🐣” 呢～ 想要换的话可以告诉我我我我我</p>
@@ -136,39 +188,87 @@
         你的敬延</p>
         <p class="small-text content-line">（不哭不哭好不好~）</p>
     </div>
-
+    </div>
     <script>
+        // LOADING SCREEN LOGIC
         document.addEventListener('DOMContentLoaded', () => {
-            const contentElements = document.querySelectorAll('h1, #mainImage, .content-line');
-            let baseDelay = 3000; // Base delay for each element in milliseconds
-            let currentDelay = 0; // Accumulates delay for each element
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                animateContent();
+            }, 5000);
+        });
 
-            // Immediately show H1
+        // TEXT ANIMATION LOGIC
+        function animateContent() {
+            const contentElements = document.querySelectorAll('h1, #mainImage, .content-line');
             const h1Element = document.querySelector('h1');
-            if (h1Element) {
-                h1Element.classList.add('visible');
+            if (h1Element) h1Element.classList.add('visible');
+            const revealableElements = Array.from(contentElements).filter(el => el);
+            let idx = 0;
+
+            function animateTextLine(element, text, cb) {
+                let i = 0;
+                element.textContent = "";
+                let cursor = document.createElement('span');
+                cursor.className = 'animated-cursor';
+                cursor.textContent = '|';
+                element.appendChild(cursor);
+
+                function showNextChar() {
+                    if (i < text.length) {
+                        // <br> support
+                        if (text[i] === '<') {
+                            const brMatch = text.slice(i).match(/^<br\s*\/?>/);
+                            if (brMatch) {
+                                element.insertBefore(document.createElement('br'), cursor);
+                                i += brMatch[0].length;
+                                setTimeout(showNextChar, 30);
+                                return;
+                            }
+                        }
+                        // Add next character
+                        let ch = text[i];
+                        let span = document.createElement('span');
+                        span.textContent = ch;
+                        element.insertBefore(span, cursor);
+                        i++;
+                        let delay = 100;
+                        if (ch == '，' || ch == ' ') delay = 300;
+                        if (ch == '，' || ch == '。' || ch == '！' || ch=='～') delay = 800; // longer delay for punctuation
+                        setTimeout(showNextChar, delay);
+                    } else {
+                        element.removeChild(cursor);
+                        if (typeof cb === 'function') cb();
+                    }
+                }
+                showNextChar();
             }
 
-            // Start revealing from the image onwards
-            const revealableElements = Array.from(contentElements).filter(el => el.tagName !== 'H1'); // Exclude h1 from the timed reveal
-
-            revealableElements.forEach((element) => {
-                setTimeout(() => {
-                    element.classList.add('visible');
-                    // Scroll into view *after* the element becomes visible
-                    element.scrollIntoView({ behavior: 'smooth', block: 'end' }); // Scroll to the bottom of the element
-                }, currentDelay);
-                currentDelay += baseDelay; // Increase delay for the next element
-            });
-
-            // Optional: A final scroll to ensure the very bottom of the page is visible after all elements have loaded
-            setTimeout(() => {
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                });
-            }, currentDelay + 1000); // Add a small extra delay after the last element appears
-        });
+            function animateNext() {
+                if (idx >= revealableElements.length) {
+                    setTimeout(() => {
+                        window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+                    }, 1000);
+                    return;
+                }
+                const element = revealableElements[idx];
+                element.classList.add('visible');
+                element.scrollIntoView({behavior: 'smooth', block: 'end'});
+                if (element.tagName === 'P' || element.tagName === 'H2') {
+                    animateTextLine(element, element.innerHTML, () => {
+                        idx++;
+                        animateNext();
+                    });
+                } else {
+                    setTimeout(() => {
+                        idx++;
+                        animateNext();
+                    }, 500);
+                }
+            }
+            animateNext();
+        }
     </script>
 </body>
 </html>
