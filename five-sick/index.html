@@ -178,12 +178,21 @@
                 document.getElementById('main-content').style.display = 'block';
                 // Play audio
                 const audio = document.getElementById('myAudio');
-                // Try to play audio reliably
-                audio.play()
-                    .then(() => {
-                        // Audio started successfully
-                        animateContent();
-                    })
+                // Try to play audio reliably, guard in case audio not present
+                if (audio && typeof audio.play === 'function') {
+                    audio.play()
+                        .then(() => {
+                            // Audio started successfully
+                            animateContent();
+                        })
+                        .catch(() => {
+                            // If audio can't play, still animate
+                            animateContent();
+                        });
+                } else {
+                    // No audio element, just animate
+                    animateContent();
+                }
             });
         });
 
@@ -206,49 +215,116 @@
                 }
             }
 
-            function animateTextLine(element, text, cb) {
-                let graphemes = splitGraphemes(text);
-                let i = 0;
+            // Tokenize HTML into text chunks and tags (special handling for <a> and <br>)
+            function tokenizeHTML(html) {
+                const tokens = [];
+                let idx = 0;
+                const length = html.length;
+                const anchorRegex = /<a\b[^>]*>[\s\S]*?<\/a>/i;
+                const brRegex = /<br\s*\/?>/i;
+
+                while (idx < length) {
+                    const rest = html.slice(idx);
+                    const aMatch = rest.match(anchorRegex);
+                    const brMatch = rest.match(brRegex);
+
+                    let nextAIndex = aMatch ? aMatch.index : -1;
+                    let nextBrIndex = brMatch ? brMatch.index : -1;
+
+                    // Determine next match among a or br
+                    let nextIndex = -1;
+                    let matchText = null;
+                    let matchType = null;
+
+                    if (nextAIndex >= 0 && (nextBrIndex === -1 || nextAIndex <= nextBrIndex)) {
+                        nextIndex = nextAIndex;
+                        matchText = aMatch[0];
+                        matchType = 'a';
+                    } else if (nextBrIndex >= 0) {
+                        nextIndex = nextBrIndex;
+                        matchText = brMatch[0];
+                        matchType = 'br';
+                    }
+
+                    if (nextIndex === -1) {
+                        // no more tags we care about
+                        tokens.push({ type: 'text', content: rest });
+                        break;
+                    }
+
+                    if (nextIndex > 0) {
+                        tokens.push({ type: 'text', content: rest.slice(0, nextIndex) });
+                    }
+
+                    if (matchType === 'a' || matchType === 'br') {
+                        tokens.push({ type: 'tag', html: matchText });
+                    }
+
+                    idx += nextIndex + matchText.length;
+                }
+
+                return tokens;
+            }
+
+            function animateTextLine(element, htmlText, cb) {
+                // Clear the element content (we will build it)
                 element.textContent = "";
+                // Create cursor
                 let cursor = document.createElement('span');
                 cursor.className = 'animated-cursor';
                 cursor.textContent = '|';
                 element.appendChild(cursor);
 
-                function showNextChar() {
+                const tokens = tokenizeHTML(htmlText);
+                let tokenIdx = 0;
 
-                    if (i < graphemes.length) {
-                        let g = graphemes[i];
-
-                        // Handle <br> tags in HTML
-                        if (g === "<") {
-                            // Look for <br>
-                            const rest = graphemes.slice(i).join('');
-                            const brMatch = rest.match(/^<br\s*\/?>/);
-                            if (brMatch) {
-                                element.insertBefore(document.createElement('br'), cursor);
-                                i += brMatch[0].length;
-                                setTimeout(showNextChar, 500);
-                                return;
-                            }
-                        }
-
-                        // Insert grapheme (character or emoji)
-                        let span = document.createElement('span');
-                        span.textContent = g;
-                        element.insertBefore(span, cursor);
-                        i++;
-                        let delay = 100;
-                        if (g == '，' || g == ' ') delay = 300;
-                        if (g == '，' || g == '。' || g == '！' || g == '～') delay = 800; // longer delay for punctuation
-
-                        setTimeout(showNextChar, delay);
-                    } else {
+                function processNextToken() {
+                    if (tokenIdx >= tokens.length) {
+                        // done
                         element.removeChild(cursor);
                         if (typeof cb === 'function') cb();
+                        return;
+                    }
+                    const token = tokens[tokenIdx];
+                    if (token.type === 'tag') {
+                        // Insert tag HTML as DOM node(s) intact (so <a> works)
+                        const temp = document.createElement('div');
+                        temp.innerHTML = token.html;
+                        // Insert each child node before the cursor
+                        while (temp.firstChild) {
+                            element.insertBefore(temp.firstChild, cursor);
+                        }
+                        tokenIdx++;
+                        // small pause after inserting a tag
+                        setTimeout(processNextToken, 200);
+                    } else if (token.type === 'text') {
+                        const graphemes = splitGraphemes(token.content);
+                        let i = 0;
+                        function showNextCharInToken() {
+                            if (i < graphemes.length) {
+                                const g = graphemes[i];
+                                const span = document.createElement('span');
+                                span.textContent = g;
+                                element.insertBefore(span, cursor);
+                                i++;
+                                let delay = 100;
+                                if (g === '，' || g === ' ') delay = 300;
+                                if (g === '，' || g === '。' || g === '！' || g === '～') delay = 800;
+                                setTimeout(showNextCharInToken, delay);
+                            } else {
+                                tokenIdx++;
+                                // brief pause between tokens
+                                setTimeout(processNextToken, 150);
+                            }
+                        }
+                        showNextCharInToken();
+                    } else {
+                        tokenIdx++;
+                        setTimeout(processNextToken, 100);
                     }
                 }
-                showNextChar();
+
+                processNextToken();
             }
 
             function animateNext() {
@@ -262,6 +338,7 @@
                 element.classList.add('visible');
                 element.scrollIntoView({behavior: 'smooth', block: 'end'});
                 if (element.tagName === 'P' || element.tagName === 'H2') {
+                    // Use innerHTML so we can preserve <a> and <br>
                     animateTextLine(element, element.innerHTML, () => {
                         idx++;
                         animateNext();
